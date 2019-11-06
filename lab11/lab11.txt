@@ -1,0 +1,20 @@
+Question 1: Describe the errors that occur when trying to assemble lab11.asm. Identify the cause of each error.
+ 14: illegal operands for missing opcode: "BRpz" is not a real opcode.
+ 16: instruction appears before .ORIG: need to add .ORIG to indicate where program starts
+ 17: constant outside of allowed range: can't use memory location as substitute for label 
+ 19: illegal operands for ADD: extra comma in line of ADD opcode
+ 30: constant outside of allowed range: can't use memory location as substitute for label
+ 32: label OUTERLOOP has already appeared: "BRpz" is not real opcode, OUTERLOOP follows it and thus is not recognized as command rather an initialization
+ 35: constant outside of allowed range: can't use memory location as substitute for label
+ 43: no .END directive found: need to indicate when program ends
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+INPUT: x300E
+ZERO: x300F
+NEG1: x3010
+RESULT: x3011
+OUTERLOOP: x3004
+INNERLOOP: x3005
+
+Question 3: Between using labels and explicit memory locations/offsets, which one makes the most sense, and why?
+Labels makes the most sense, because one can name labels to clarify what they are and how they are being used. You cannot figure out the memory locations and offsets of certain values without compiling and running. It is way easier to just define a label assign it to a value, and it makes the code's readability way easier

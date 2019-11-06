@@ -1,0 +1,36 @@
+; Zayd Saeed (netID: zsaeed2)
+; Date: November 15, 2018
+; This program summates all the positive values in an array of values
+; ignoring the negative ones.
+
+0011 0001 0000 0000 ; x3100 - starting address of the program
+
+0101 001 001 1 00000; AND R1, x00000 Logical bitwise operation AND with R1 to clear values in R1
+				     ;R1 serves as the counter
+0101 101 101 1 00000; AND R2, x00000 Logical bitwise operation AND with R5 to clear values in R5
+				     ;R2 serves as the final sum
+0101 011 011 1 00000; AND R3, x00000 Logical bitwise operation AND with R3 to clear values in R3
+				     ;R3 serves as the memory placeholder for the values in the 
+				     ;array
+
+0001 001 001 1 01010; R1 <- R1 + 10 Adds the decimal value 10 to the counter
+
+1110 011 000101100; LEA R3 from x3105 to x3132 Changes memory position of R3 from x3105 to x3132 using PC offset
+
+0001 011 011 1 00001; R3 <- R3 + 1 Increments R3 by 1, getting to the next memory value
+
+0110 100 011 000000; LD R4, M[R3] Loads the value at the memory of R3 into the register R4
+				  ;R4 serves as the placeholder to add the memory values to final sum
+
+0000 100 000000001; Skip next statement if above statement has negative value (essentially if R4 is negative)
+
+0001 101 101 0 00 100; R5 <- R5 + R4 Adds value of R4 into value of R5, the register holding the final sum
+
+0001 001 001 1 11111; R1 <- R1 + (-1) Decreases the counter by 1
+
+0000 001 111111010; Loop back to R3 <- R3 + 1 instruction Loops back 5 steps until counter no longer is positive
+
+1111 0000 0010 0101; halt the program stops the program
+
+
+
